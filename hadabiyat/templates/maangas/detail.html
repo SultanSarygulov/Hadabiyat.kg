@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}{{maanga.maanga_title}}{% endblock %}
+
+{% block content %}
+
+    <h2>{{maanga.maanga_title}}</h2>
+
+    <p>{{maanga.maanga_text}}</p>
+
+    <em>{{maanga.maanga_publ}}</em>
+
+    <hr>
+    {% if chapters_list %}
+        
+        {% for ch in chapters_list %}
+            <a href="{% url 'maangas:chapter' ch.id % }">
+                <img src={{ch.chapter_page.url}}><br>
+            </a
+        {% endfor%}
+
+    {% else %}
+        No Maangas((
+    {% endif %}
+
+    {% if latest_comments_list %}
+        
+        {% for c in latest_comments_list %}
+            <p>
+                <strong>{{c.author_name}}</strong>
+                <p>{{c.comment_text}}</p>
+            </p>
+        {% endfor%}
+
+    {% else %}
+    No comments!
+    {% endif %}
+
+    <hr>
+
+    <form action="{% url 'maangas:leave_comment' maanga.id %}" method="POST">
+
+        {% csrf_token %}
+
+        <input type="text" required="" placeholder="Your name" name="name"><br>
+        <textarea name="text" required="" placeholder="Your comment" cols="30" rows="10"></textarea><br>
+        <button type="submit">Leave your comment</button>
+
+    </form>
+
+{% endblock %}

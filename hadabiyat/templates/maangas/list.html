@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Recent Titles{% endblock %}
+
+{% block content %}
+    <form action="{% url 'maangas:index' %}" method="get">
+        <input class="search" type="text" placeholder="Search" name="q">
+    </form>
+    
+    {% if latest_maanga_list %}
+
+        {% for a in latest_maanga_list %}
+            
+            <a href="{% url 'maangas:detail' a.id %}">{{a.maanga_title}} </a><br>
+        
+        {% endfor %}
+
+    {% else %}
+        No maangas(
+    {% endif %}
+
+{% endblock %}
+

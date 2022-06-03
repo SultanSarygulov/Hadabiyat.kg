@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Maanga, Comment, Chapter
+
+admin.site.register(Maanga)
+admin.site.register(Comment)
+admin.site.register(Chapter)
+
+
