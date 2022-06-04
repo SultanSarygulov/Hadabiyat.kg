@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}{{maanga_title}} - page 1{% endblock %}
+{% block title %}{{maanga.maanga_title}} - page {{chapter_id}}{% endblock %}
 
 {% block content %}
 
-<img src={{chapter.chapter_page.url}}>
+<img src={{chapter.chapter_page.url}}><br>
 
+{% if prev_chapter != 0 %}
+    <a href="{{prev_chapter}}">PREV</a>
+{% else %}
+    <a role="link" aria-disabled="true" >PREV</a>
+{% endif %}
+
+{% if prev_chapter != last_chapter %}
+    <a href="{{next_chapter}}">NEXT</a>
+{% else %}
+    <a role="link" aria-disabled="true" >NEXT</a>
+{% endif %}
+
+<a href="{% url 'maangas:detail' maanga.id %}">RETURN</a>
 
 {% endblock %}

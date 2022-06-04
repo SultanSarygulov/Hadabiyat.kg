@@ -44,11 +44,17 @@ def chapter(request, maanga_id, chapter_id):
     
     ch = Chapter.objects.get(id = chapter_num)
 
-    return render(request, 'maangas/chapter.html', {'chapter': ch, 'maanga_title': a.maanga_title,
+    #set next and previous page
+    
+    ch_prev = chapter_id - 1
+    ch_next = chapter_id + 1
+    last_chapter = chapters_list.index(chapters_list[-1])
+
+    return render(request, 'maangas/chapter.html', {'chapter': ch, 'maanga': a,
     'chapter_id':chapter_id,
-    'chapters_list':chapters_list,
-    'chapter_num': chapter_num,
-    'all_chapters':all_chapters})
+    'prev_chapter':ch_prev,
+    'next_chapter': ch_next,
+    'last_chapter': last_chapter})
 
 
 def leave_comment(request, maanga_id):
