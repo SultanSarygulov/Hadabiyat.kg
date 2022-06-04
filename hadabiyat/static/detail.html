@@ -11,12 +11,10 @@
     <em>{{maanga.maanga_publ}}</em>
 
     <hr>
-    
     {% if chapters_list %}
         
         {% for ch in chapters_list %}
-            
-            <a href={{forloop.counter}}>
+            <a href="{% url 'maangas:chapter' ch.id %}">
                 <img src={{ch.chapter_page.url}}><br>
             </a>
         {% endfor%}
